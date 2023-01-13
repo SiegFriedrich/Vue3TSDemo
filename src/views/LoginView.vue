@@ -9,10 +9,10 @@
                     <el-input v-model="formLabelAlign.name" />
                 </el-form-item>
                 <el-form-item label="Password">
-                    <el-input v-model="formLabelAlign.region" />
+                    <el-input v-model="formLabelAlign.password" />
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm(ruleFormRef)">
+                    <el-button type="primary" @click="submitForm(formLabelAlign)">
                         Create
                     </el-button>
                 </el-form-item>
@@ -22,12 +22,16 @@
 </template>
 
 <script lang="ts">
+import router from '@/router'
 import { defineComponent } from 'vue'
 import { reactive, ref } from 'vue'
 
 export default defineComponent({
     setup() {
-        const submitForm = (form: string) => {
+        const submitForm = (form: object) => {
+            if (formLabelAlign.name === 'lex' && formLabelAlign.password === '123') {
+                router.push('/blog-main-page');
+            }
             console.log(form);
         }
         const ruleFormRef = ref('');
@@ -35,8 +39,7 @@ export default defineComponent({
 
         const formLabelAlign = reactive({
             name: '',
-            region: '',
-            type: '',
+            password: '',
         })
 
         return { labelPosition, formLabelAlign, submitForm, ruleFormRef }

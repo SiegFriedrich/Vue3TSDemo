@@ -11,6 +11,7 @@
 html,
 body,
 #app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   height: 100%;
   width: 100%;
 }
