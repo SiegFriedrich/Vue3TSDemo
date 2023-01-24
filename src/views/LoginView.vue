@@ -1,20 +1,22 @@
 <template>
     <div class="login-box">
-        <div>
-            <h1>Login Page</h1>
+        <div class="header-title">
+            <h1>Sieg Login Page</h1>
         </div>
         <div class="middle-content">
-            <el-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign" style="max-width: 460px">
-                <el-form-item label="Name / Email">
-                    <el-input v-model="formLabelAlign.name" />
+            <el-form :label-position="labelPosition" label-width="120px" style="max-width: 460px" ref="ruleFormRef"
+                :model="ruleForm" :rules="rules" class="demo-ruleForm" status-icon>
+                <el-form-item label="Name / Email" prop="name">
+                    <el-input v-model="ruleForm.name" />
                 </el-form-item>
-                <el-form-item label="Password">
-                    <el-input v-model="formLabelAlign.password" />
+                <el-form-item label="Password" prop="password">
+                    <el-input v-model="ruleForm.password" />
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm(formLabelAlign)">
-                        Create
+                    <el-button type="primary" @click="submitForm(ruleForm)">
+                        Enter
                     </el-button>
+                    <el-button @click="resetForm(ruleForm)">Reset</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -23,26 +25,41 @@
 
 <script lang="ts">
 import router from '@/router'
-import { defineComponent } from 'vue'
+import { FormRules } from 'element-plus/es/tokens/form'
+import { defineComponent, toRefs } from 'vue'
 import { reactive, ref } from 'vue'
+import { LoginData } from '../type/login';
 
 export default defineComponent({
     setup() {
-        const submitForm = (form: object) => {
-            if (formLabelAlign.name === 'lex' && formLabelAlign.password === '123') {
+        const submitForm = (form: LoginData) => {
+            if (form.name === 'lex' && form.password === '123') {
                 router.push('/blog-main-page');
             }
             console.log(form);
         }
-        const ruleFormRef = ref('');
+        const resetForm = (value: LoginData) => { console.log(value) }
+
         const labelPosition = ref('right')
 
-        const formLabelAlign = reactive({
-            name: '',
-            password: '',
-        })
+        const formData = reactive(new LoginData());
 
-        return { labelPosition, formLabelAlign, submitForm, ruleFormRef }
+        const ruleForm = ref({
+            name: '',
+            password: ''
+        });
+
+        const rules = reactive<FormRules>({
+            name: [
+                { required: true, message: 'Please input Username', trigger: 'blur' },
+                { min: 3, max: 40, message: 'Length should be 3 to 40', trigger: 'blur' },
+            ],
+            password: [
+                { required: true, message: 'Please input Password', trigger: 'blur' },
+                { min: 6, max: 15, message: 'Length should be 6 to 15', trigger: 'blur' },
+            ],
+        });
+        return { labelPosition, ...toRefs(formData), ruleForm, submitForm, resetForm, rules }
     }
 })
 </script>
@@ -51,14 +68,20 @@ export default defineComponent({
 .login-box {
     width: 100%;
     height: 100%;
+    padding-top: 15%;
     background-image: url('../assets/cc_bg.jpg');
+    .header-title {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
 }
 .middle-content {
     display: flex;
     justify-content: center;
     margin-right: 30%;
     margin-left: 30%;
-    padding: 35px;
+    padding: 35px 35px 15px 35px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 25px;
 
