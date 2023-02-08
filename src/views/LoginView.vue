@@ -4,19 +4,26 @@
             <h1>Sieg Login Page</h1>
         </div>
         <div class="middle-content">
-            <el-form :label-position="labelPosition" label-width="120px" style="max-width: 460px" ref="ruleFormRef"
-                :model="ruleForm" :rules="rules" class="demo-ruleForm" status-icon>
+            <el-form 
+            :label-position="labelPosition" 
+            label-width="120px" 
+            style="max-width: 460px" 
+            ref="ruleFormRef"
+            :model="ruleForm" 
+            :rules="rules" 
+            class="demo-ruleForm" 
+            status-icon>
                 <el-form-item label="Name / Email" prop="name">
                     <el-input v-model="ruleForm.name" />
                 </el-form-item>
                 <el-form-item label="Password" prop="password">
-                    <el-input v-model="ruleForm.password" />
+                    <el-input v-model="ruleForm.password" @keyup.enter="submitForm(ruleFormRef)" />
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm(ruleForm)">
+                    <el-button type="primary" @click="submitForm(ruleFormRef)">
                         Enter
                     </el-button>
-                    <el-button @click="resetForm(ruleForm)">Reset</el-button>
+                    <el-button @click="resetForm(ruleFormRef)">Reset</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -24,31 +31,35 @@
 </template>
 
 <script lang="ts">
-import router from '@/router'
+// import router from '@/router'
 import { FormRules } from 'element-plus/es/tokens/form'
-import { defineComponent, toRefs } from 'vue'
+import { defineComponent } from 'vue'
 import { reactive, ref } from 'vue'
 import { LoginData } from '../type/login';
+import type { FormInstance } from 'element-plus'
+import login from '../request/api'
 
 export default defineComponent({
     setup() {
-        const submitForm = (form: LoginData) => {
-            if (form.name === 'lex' && form.password === '123') {
-                router.push('/blog-main-page');
-            }
-            console.log(form);
-        }
-        const resetForm = (value: LoginData) => { console.log(value) }
-
+        // const submitForm = (form: LoginData) => {
+        //     if (form.name === 'lex' && form.password === '123456') {
+        //         // router.push('/blog-main-page');
+        //         console.log(router);
+        //     }
+        //     console.log(form);
+        // }
+        const ruleFormRef = ref<FormInstance>();
+        const resetForm = (value: FormInstance | undefined) => { console.log(value) }
+        // const resetForm = (formEl: FormInstance | undefined) => {
+        //     if (!formEl) return
+        //     formEl.resetFields()
+        // }
         const labelPosition = ref('right')
-
-        const formData = reactive(new LoginData());
-
-        const ruleForm = ref({
-            name: '',
-            password: ''
-        });
-
+        const ruleForm = reactive(new LoginData());
+        // const ruleForm = ref({
+        //     name: '',
+        //     password: ''
+        // });
         const rules = reactive<FormRules>({
             name: [
                 { required: true, message: 'Please input Username', trigger: 'blur' },
@@ -59,7 +70,39 @@ export default defineComponent({
                 { min: 6, max: 15, message: 'Length should be 6 to 15', trigger: 'blur' },
             ],
         });
-        return { labelPosition, ...toRefs(formData), ruleForm, submitForm, resetForm, rules }
+     
+        const onLogin =async () => {
+            try{
+                console.log('Success!');
+                const res = await login(ruleForm);
+                console.log(`Print the res of axios is ${res}`);
+            } catch (err) {
+                console.log(`Error --- ${err}`)
+            }
+            
+                    
+        }
+
+        const submitForm = (formEl: FormInstance | undefined) => {
+            if (!formEl) return
+            console.log(formEl);
+            formEl.validate((valid) => {
+                if (valid) {
+                    console.log('submit!!!') 
+                    console.log(ruleForm);
+                    onLogin();
+                } else {
+                    console.log('error submit!')
+                    return false
+                }
+            })
+        }
+
+        const options = Array.from({ length: 10000 }).map((_, idx) => ({
+            value: `${idx + 1}`,
+            label: `${idx + 1}`,
+        }))
+        return { labelPosition, ruleForm, submitForm, resetForm, rules, ruleFormRef,onLogin,options}
     }
 })
 </script>
