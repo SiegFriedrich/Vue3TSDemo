@@ -38,6 +38,7 @@ import { reactive, ref } from 'vue'
 import { LoginData } from '../type/login';
 import type { FormInstance } from 'element-plus'
 import login from '../request/api'
+import router from '@/router';
 
 export default defineComponent({
     setup() {
@@ -70,12 +71,19 @@ export default defineComponent({
                 { min: 6, max: 15, message: 'Length should be 6 to 15', trigger: 'blur' },
             ],
         });
+
+
      
         const onLogin =async () => {
             try{
                 console.log('Success!');
                 const res = await login(ruleForm);
-                console.log(`Print the res of axios is ${res}`);
+                console.log(res);
+                const res2 = JSON.parse(JSON.stringify(res));
+                //保存Token
+                localStorage.setItem('token',res2.consequence.word);
+                //跳转页面
+                router.push('/blog-main-page');
             } catch (err) {
                 console.log(`Error --- ${err}`)
             }
