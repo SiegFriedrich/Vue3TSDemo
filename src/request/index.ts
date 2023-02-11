@@ -2,7 +2,7 @@ import axios from "axios";
 
 //创建axios实例
 const service = axios.create({
-  baseURL: "https://4c669401-48c9-4857-a50a-162eb713785b.mock.pstmn.io/",
+  baseURL: "http://localhost:8081",
   timeout: 5000,
   headers: {
     "Content-Type": "application/json;charset=utf-8",

@@ -7,6 +7,7 @@
             <div>
                 {{ article.content }}
             </div>
+
         </div>
     </div>
 </template>
