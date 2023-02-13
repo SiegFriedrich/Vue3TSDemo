@@ -15,7 +15,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 > shift + cmd + p
 > select Format Document  --> to choose which formatter to be your default formatter
 
-### How to update Typescript version?
+# Q&A
+#### What if sometimes find the css or layout wierd?
+> maybe it's the cache, hard refresh it by pressing ctrl + F5 or using Incogito mode of Chrome
+#### How to update Typescript version?
 > sudo npm install -g typescript@latest
 
 ### In real produce environment we need to run lint 

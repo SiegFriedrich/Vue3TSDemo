@@ -13,7 +13,7 @@
 <script lang="ts">
 import ArticleComponent from "@/components/ArticleComponent.vue";
 import { defineComponent, ref } from "vue";
-import { ArticleModel } from "../model/article.model";
+import { ArticleModel } from "@/models/article.model";
 
 export default defineComponent({
   name: "BlogMainPage",

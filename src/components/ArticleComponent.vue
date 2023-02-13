@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { ArticleModel } from '@/model/article.model';
+import { ArticleModel } from '@/models/article.model';
 import { PropType, defineComponent } from 'vue'
 
 export default defineComponent({
