@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
         name: "goods",
         meta: {
           isShow: true,
-          title: "商品列表",
+          title: "Goods",
         },
         component: () =>
           import(/* webpackChunkName: "about" */ "../views/GoodsView.vue"),
@@ -28,7 +28,7 @@ const routes: Array<RouteRecordRaw> = [
         name: "users",
         meta: {
           isShow: true,
-          title: "用户列表",
+          title: "Users",
         },
         component: () =>
           import(/* webpackChunkName: "about" */ "../views/UsersView.vue"),

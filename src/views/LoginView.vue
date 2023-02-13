@@ -4,15 +4,8 @@
             <h1>Sieg Login Page</h1>
         </div>
         <div class="middle-content">
-            <el-form 
-            :label-position="labelPosition" 
-            label-width="120px" 
-            style="max-width: 460px" 
-            ref="ruleFormRef"
-            :model="ruleForm" 
-            :rules="rules" 
-            class="demo-ruleForm" 
-            status-icon>
+            <el-form :label-position="labelPosition" label-width="120px" style="max-width: 460px" ref="ruleFormRef"
+                :model="ruleForm" :rules="rules" class="demo-ruleForm" status-icon>
                 <el-form-item label="Name / Email" prop="name">
                     <el-input v-model="ruleForm.name" />
                 </el-form-item>
@@ -27,7 +20,7 @@
                 </el-form-item>
             </el-form>
         </div>
-        </div>
+    </div>
 </template>
 
 <script lang="ts">
@@ -73,22 +66,22 @@ export default defineComponent({
         });
 
 
-     
-        const onLogin =async () => {
-            try{
+
+        const onLogin = async () => {
+            try {
                 console.log('Success!');
                 const res = await login(ruleForm);
                 console.log(res);
                 const res2 = JSON.parse(JSON.stringify(res));
                 //保存Token
-                localStorage.setItem('token',res2.idToken);
+                localStorage.setItem('token', res2.idToken);
                 // //跳转页面
                 router.push('/blog-main-page');
             } catch (err) {
                 console.log(`Error --- ${err}`)
             }
-            
-                    
+
+
         }
 
         const submitForm = (formEl: FormInstance | undefined) => {
@@ -96,7 +89,7 @@ export default defineComponent({
             console.log(formEl);
             formEl.validate((valid) => {
                 if (valid) {
-                    console.log('submit!!!') 
+                    console.log('submit!!!')
                     console.log(ruleForm);
                     onLogin();
                 } else {
@@ -110,7 +103,7 @@ export default defineComponent({
             value: `${idx + 1}`,
             label: `${idx + 1}`,
         }))
-        return { labelPosition, ruleForm, submitForm, resetForm, rules, ruleFormRef,onLogin,options}
+        return { labelPosition, ruleForm, submitForm, resetForm, rules, ruleFormRef, onLogin, options }
     }
 })
 </script>
@@ -121,12 +114,14 @@ export default defineComponent({
     height: 100%;
     padding-top: 15%;
     background-image: url('../assets/cc_bg.jpg');
+
     .header-title {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-        }
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
 }
+
 .middle-content {
     display: flex;
     justify-content: center;
@@ -139,6 +134,6 @@ export default defineComponent({
     el-form-item {
         color: rgb(255, 255, 255);
     }
-    
+
 }
 </style>
