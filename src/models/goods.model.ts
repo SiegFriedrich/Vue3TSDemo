@@ -4,9 +4,12 @@
 //   info: string;
 //   title: string;
 // };
+
+//定义接口
 export interface GoodsList {
   userId: number;
   id: number;
+  company: string;
   info: string;
   title: string;
 }
@@ -14,15 +17,17 @@ export interface GoodsList {
 interface selectDataInt {
   title: string;
   introduction: string;
-  page: number;
-  count: number;
-  pageSize: number;
+  company: string;
+  page: number; //页码
+  count: number; //总条数
+  pageSize: number; //默认一页显示几条
 }
 
 export class initData {
   selectData: selectDataInt = {
     title: "",
     introduction: "",
+    company: "",
     page: 1,
     count: 0,
     pageSize: 10,

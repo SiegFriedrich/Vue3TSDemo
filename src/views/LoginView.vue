@@ -30,7 +30,7 @@ import { defineComponent } from 'vue'
 import { reactive, ref } from 'vue'
 import { LoginData } from '../type/login';
 import type { FormInstance } from 'element-plus'
-import login from '../request/api'
+import { login } from '../request/api'
 import router from '@/router';
 
 export default defineComponent({
@@ -99,11 +99,8 @@ export default defineComponent({
             })
         }
 
-        const options = Array.from({ length: 10000 }).map((_, idx) => ({
-            value: `${idx + 1}`,
-            label: `${idx + 1}`,
-        }))
-        return { labelPosition, ruleForm, submitForm, resetForm, rules, ruleFormRef, onLogin, options }
+
+        return { labelPosition, ruleForm, submitForm, resetForm, rules, ruleFormRef, onLogin }
     }
 })
 </script>

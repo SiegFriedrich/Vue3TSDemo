@@ -23,3 +23,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### In real produce environment we need to run lint 
 ### and write jest to retrieve the coverage
+
+
+### In Api.ts file cannot export more than 1 default function

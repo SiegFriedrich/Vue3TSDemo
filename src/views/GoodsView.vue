@@ -1,13 +1,13 @@
 <template>
-  <el-form :inline="true" :model="formInline" class="demo-form-inline">
+  <el-form :inline="true" :model="selectDataRef.selectData" class="demo-form-inline">
     <el-form-item label="Title">
-      <el-input v-model="formInline.user" placeholder="example: wine" />
+      <el-input v-model="selectDataRef.selectData.title" placeholder="example: wine" />
     </el-form-item>
     <el-form-item label="Info">
-      <el-input v-model="formInline.user" placeholder="example: apple" />
+      <el-input v-model="selectDataRef.selectData.introduction" placeholder="example: apple" />
     </el-form-item>
     <el-form-item label="Company">
-      <el-select v-model="formInline.region" placeholder="example: sony">
+      <el-select v-model="selectDataRef.selectData.company" placeholder="example: sony">
         <el-option label="Apple" value="1" />
         <el-option label="Azure" value="2" />
         <el-option label="AWS" value="3" />
@@ -19,14 +19,26 @@
       <el-button type="" class="button" @click="onSubmit">Query</el-button>
     </el-form-item>
   </el-form>
+  <div>
+    <TableComponent :data="selectDataRef.list"></TableComponent>
+</div>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { onMounted, reactive } from 'vue'
+import { getAllGoods } from '../request/api';
+import TableComponent from '@/components/TableComponent.vue'
+import { initData } from '../models/goods.model';
 
-const formInline = reactive({
-  user: '',
-  region: '',
+const selectDataRef = reactive(new initData());
+const onGetAllGoods = async () => {
+  const resp = await getAllGoods();
+  selectDataRef.list = resp.data;
+  console.log(resp.data)
+}
+
+onMounted(async () => {
+  await onGetAllGoods();
 })
 
 const onSubmit = () => {
