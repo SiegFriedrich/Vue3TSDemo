@@ -20,7 +20,7 @@
     </el-form-item>
   </el-form>
   <div>
-    <TableComponent :data="selectDataRef.list"></TableComponent>
+    <TableComponent :data="selectDataRef"></TableComponent>
 </div>
 </template>
 
