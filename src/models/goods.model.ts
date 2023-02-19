@@ -30,7 +30,7 @@ export class initData {
     company: "",
     page: 1,
     count: 0,
-    pageSize: 10,
+    pageSize: 15,
   };
   list: GoodsList[] = [];
 }

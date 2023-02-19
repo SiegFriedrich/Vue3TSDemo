@@ -3,8 +3,9 @@
         <el-table-column prop="id" label="ID" width="100" />
 
         <el-table-column prop="title" label="Title" width="180" />
-        <el-table-column prop="info" label="Introduction" />
         <el-table-column prop="company" label="Company" width="180" />
+        <el-table-column prop="info" label="Introduction" />
+
     </el-table>
     <div class="example-pagination-block">
         <div class="demo-pagination-block">
@@ -27,6 +28,8 @@ const props = defineProps({
 });
 //You can use this kinda method/way to retrieve property from props!
 const { data } = toRefs(props);
+
+//comput the data for dataList once the page changed
 const dataList = reactive(computed(() => {
     return data.value.list.slice((data.value.selectData.page - 1) * data.value.selectData.pageSize,
         (data.value.selectData.page * data.value.selectData.pageSize));
