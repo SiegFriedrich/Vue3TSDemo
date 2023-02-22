@@ -8,6 +8,7 @@
     </el-form-item>
     <el-form-item label="Company">
       <el-select v-model="selectDataRef.selectData.company" placeholder="example: sony">
+        <el-option label="---" value="" />
         <el-option label="Apple" value="Apple" />
         <el-option label="Azure" value="Azure" />
         <el-option label="AWS" value="AWS" />
@@ -31,6 +32,7 @@ import { getAllGoods } from '../request/api';
 import TableComponent from '@/components/TableComponent.vue'
 import { initData, GoodsList } from '../models/goods.model';
 
+//Remeber how to initial data!!!
 const selectDataRef = reactive(new initData());
 let resultData: GoodsList[] = [];
 let initDataList: GoodsList[] = [];

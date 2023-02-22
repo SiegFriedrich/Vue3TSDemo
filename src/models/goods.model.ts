@@ -1,10 +1,3 @@
-// export type Goods = {
-//   userId: number;
-//   id: number;
-//   info: string;
-//   title: string;
-// };
-
 //定义接口
 export interface GoodsList {
   userId: number;
