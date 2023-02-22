@@ -21,9 +21,10 @@
       <el-button type="" class="button" @click="onDiscard">Discard</el-button>
     </el-form-item>
   </el-form>
+  <InfoReference></InfoReference>
   <div>
     <TableComponent :data="selectDataRef"></TableComponent>
-</div>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -31,6 +32,7 @@ import { onMounted, reactive, watch } from 'vue'
 import { getAllGoods } from '../request/api';
 import TableComponent from '@/components/TableComponent.vue'
 import { initData, GoodsList } from '../models/goods.model';
+import InfoReference from '@/components/InfoReference.vue';
 
 //Remeber how to initial data!!!
 const selectDataRef = reactive(new initData());
@@ -48,6 +50,7 @@ const onDiscard = () => {
   onGetAllGoods();
 }
 onMounted(async () => {
+  console.log(process.env);
   await onGetAllGoods();
 })
 
