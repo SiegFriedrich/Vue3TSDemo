@@ -31,7 +31,7 @@
 import { onMounted, reactive, watch } from 'vue'
 import { getAllGoods } from '../request/api';
 import TableComponent from '@/components/TableComponent.vue'
-import { initData, GoodsList } from '../models/goods.model';
+import { initData, GoodsList } from '../models';
 import InfoReference from '@/components/InfoReference.vue';
 
 //Remeber how to initial data!!!
