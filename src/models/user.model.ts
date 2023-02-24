@@ -25,5 +25,14 @@ export class InitUserList {
     email: "",
     role: "",
   };
-  userDataList: UserListInf[] = [];
+  userDataList: UserListInf[] = [{
+    userId: 1234,
+    username: 'string',
+    email: 'string',
+    roles: [{
+      id: 1234567,
+      roleId: 2,
+      roleName: 'Admin',
+    }],
+  }];
 }

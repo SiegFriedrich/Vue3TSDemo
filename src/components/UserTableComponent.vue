@@ -6,19 +6,19 @@
         <el-table-column prop="email" label="Company" width="180" />
         <el-table-column prop="roles" label="Introduction" />
 
-</el-table>
+    </el-table>
 </template>
 
 <script setup lang="ts">
 import { PropType, reactive, defineProps, toRefs } from 'vue';
-import { UserListInf } from '../models/user.model';
+import { InitUserList, UserListInf } from '../models/user.model';
 
 // IMPORTANT!! ATTENTION
 // MUST REMENBER HOW TO DEFINE PROPS IN VUE!!!!
 const props = defineProps({
     data: {
         required: true,
-        type: Object as PropType<UserListInf>,
+        type: Object as PropType<InitUserList>,
     }
 });
 const { data } = toRefs(props);

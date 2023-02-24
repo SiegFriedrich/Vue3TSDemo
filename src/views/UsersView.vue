@@ -1,4 +1,6 @@
 import { reactive } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useContractStore } from '../store/contract.store';
 import { UserListInf } from '../models/user.model';
 <template>
   <el-form :inline="true" :model="selectDataRef.selectData" class="demo-form-inline">
@@ -23,17 +25,20 @@ import { UserListInf } from '../models/user.model';
       <el-button type="" class="button" @click="onDiscard">Discard</el-button>
     </el-form-item>
   </el-form>
-<UserTableComponent :data="userList"></UserTableComponent>
 </template>
 
 <script lang="ts" setup>
 import { InitUserList, UserListInf } from '@/models/user.model';
-import { reactive } from 'vue';
+import UserTableComponent from "@/components/UserTableComponent.vue";
+import { reactive, ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useContractStore } from '@/store/contract.store';
+const store = useContractStore();
+
 
 const selectDataRef = reactive(new InitUserList());
 const onSubmit = () => { console.log(1) };
 const onDiscard = () => { console.log(1) };
-const userList: UserListInf[] = [];
 </script>
 
 <style lang="scss" scoped>

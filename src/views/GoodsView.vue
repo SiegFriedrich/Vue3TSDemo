@@ -31,18 +31,35 @@
 import { onMounted, reactive, watch } from 'vue'
 import { getAllGoods } from '../request/api';
 import TableComponent from '@/components/TableComponent.vue'
-import { initData, GoodsList } from '../models';
+import { initData, GoodsList, ContractInfoResp } from '../models';
 import InfoReference from '@/components/InfoReference.vue';
+import axios from 'axios';
+import { axiosUtil } from '../util/axios.util';
 
 //Remeber how to initial data!!!
 const selectDataRef = reactive(new initData());
 let resultData: GoodsList[] = [];
 let initDataList: GoodsList[] = [];
 const onGetAllGoods = async () => {
-  const resp = await getAllGoods();
+  /**
+   * The returned value of axios is a promise, so it contains like below
+   * export interface AxiosResponse<T = any, D = any> {
+      data: T;
+      status: number;
+      statusText: string;
+      headers: RawAxiosResponseHeaders | AxiosResponseHeaders;
+      config: InternalAxiosRequestConfig<D>;
+      request?: any;
+    }
+   */
+  const resp = await axiosUtil.get<any>('/goods/all');
   initDataList = resp.data;
-  selectDataRef.list = resp.data;
+  selectDataRef.list = resp.data.value;
+  console.log(selectDataRef);
   console.log(resp.data)
+
+  const resp2 = await axiosUtil.get<ContractInfoResp>(`/contract/all`)
+  console.log(resp2);
 }
 const onDiscard = () => {
   selectDataRef.selectData.title = '';

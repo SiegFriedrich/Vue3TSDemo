@@ -3,7 +3,7 @@
         <el-col :span="8">
             <el-card class="el-card-box" shadow="hover">
                 <div class="f-box">
-                    <ContractInfo :infoId="infoId" icon policyNo contractRange salesAgencyCode companyInfo />
+                    <ContractInfo :contractInfoId="infoId" icon policyNo contractRange salesAgencyCode companyInfo />
                     <div style="padding: 14px">
                         <span>Yummy hamburger</span>
                         <div class="bottom">
@@ -19,7 +19,12 @@
   
 <script lang="ts" setup>
 import { ref } from 'vue'
-const infoId = ref('12345');
+import ContractInfo from './ContractInfo.vue';
+/**
+ *  父子组件数据传递时， 不用ref or reactive
+ * 只有页面呈现数据时，才会用响应式的ref reactive
+ */
+const infoId = '100001';
 
 const currentDate = ref(new Date())
 </script>

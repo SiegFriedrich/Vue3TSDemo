@@ -53,11 +53,11 @@ class AxiosUtil {
     }
 
     //3.get idToken
-    const idToken = this.getCookieValue('idToken');
-    if(idToken == undefined){
-      throw new AuthError();
-    }
-    this.refreshCookie('idToken');
+    // const idToken = this.getCookieValue('idToken');
+    // if(idToken == undefined){
+    //   throw new AuthError();
+    // }
+    // this.refreshCookie('idToken');
 
     //4.axios request config
     const config: AxiosRequestConfig = {
@@ -65,9 +65,9 @@ class AxiosUtil {
       method: method,
       data:body,
       params:params,
-      headers:{
-        Authorization: idToken
-      },
+      // headers:{
+      //   Authorization: idToken
+      // },
       timeout: this.timeout,
     };
 
