@@ -5,12 +5,12 @@ import type { DefineComponent from 'vue';
             <img class="img-width" src="@/assets/sea-wave.jpeg" alt="/" />
         </div>
         <div class="f-flex">
-            <!-- <Record v-if="policyNo" label="证券番号" :value="contractInfo?.policyNo" class="mt-6px" /> -->
+            <Record v-if="policyNo" label="证券番号" :value="contractInfo?.policyNo" class="mt-6px" />
             <Record v-if="contractRange" label="保险期间" :value="contractRangeValue" class="mt-6px" />
             <Record v-if="salesAgencyCode" label="营业代码" :value="salesAgencyCodeValue" class="mt-6px" />
         </div>
     <!-- <CompanyLabel v-if="companyInfo" :companyName="contractInfo?.policyHolderName"
-                :divisionName="contractInfo?.divisionName" /> -->
+                            :divisionName="contractInfo?.divisionName" /> -->
     </div>
 </template>
 
@@ -44,10 +44,11 @@ onMounted(async () => {
         console.log(`contractInfoId = ${props.contractInfoId}`);
         const resp = await axiosUtil.get<ContractInfoResp>(`/contract/${props.contractInfoId}`);
         console.log(`JSON parse result --->  ${JSON.stringify(resp)}`);
-        contractInfo.value = JSON.parse(JSON.stringify(resp));
+        contractInfo.value = JSON.parse(JSON.stringify(resp.data));
         console.log(`CONTRACT INFO value == ${contractInfo.value}`)
         console.log(`CONTRACT INFO == ${contractInfo}`)
         console.log(`resp ===》 ${resp}`);
+        console.log(contractInfo.value?.policyHolderName);
     }
 });
 </script>

@@ -1,6 +1,5 @@
 <template>
     <div class="record">
-        <h1>RECORD</h1>
         <div>{{ label }}</div>
         <div v-html="value" class="font-weight-bold"></div>
     </div>

@@ -40,6 +40,7 @@ const currentDate = ref(new Date())
 }
 
 .el-card-box {
+    width: 1200px;
     margin-bottom: 40px;
 }
 
