@@ -2,10 +2,11 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import ElementPlus from "element-plus";
-import "element-plus/dist/index.css";
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { errorHandler } from './util/error-handler.util';
+import "element-plus/dist/index.css";
+import './assets/css/main.scss';
 
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);

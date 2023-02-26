@@ -6,9 +6,9 @@ import { Const } from "./const.util";
 import { AuthError } from '../models/error.model';
 
 export const errorHandler = (err:any) => {
-    console.error(err);
-    console.error(err.code);
-    console.error(err.response);
+    console.log(err);
+    console.log(err.code);
+    console.log(err.response);
 
     // 1 タイムアウトエラー
     if(err.code && err.code === 'ECONNABORTED'){

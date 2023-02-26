@@ -10,9 +10,20 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "main",
+    redirect:"/index",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/MainView.vue"),
     children: [
+      {
+        path: "/index",
+        name: "index",
+        meta: {
+          isShow: true,
+          title: "index",
+        },
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/IndexView.vue"),
+      },
       {
         path: "/goods",
         name: "goods",

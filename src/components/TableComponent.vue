@@ -13,13 +13,14 @@
                 layout="prev, pager, next, jumper" :total="data.list.length" @size-change="handleSizeChange"
                 @current-change="handleCurrentChange" />
         </div>
-</div>
+    </div>
 </template>
   
 <script lang="ts" setup>
-import { PropType, defineProps, toRefs, reactive } from 'vue';
+import { PropType, defineProps, toRefs, reactive, onMounted } from 'vue';
 import { initData } from '../models/goods.model';
 import { computed } from '@vue/reactivity';
+import { stringUtil } from '@/util/string.util';
 const props = defineProps({
     data: {
         required: true,

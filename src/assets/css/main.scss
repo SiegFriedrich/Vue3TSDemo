@@ -1,0 +1,6 @@
+.el-menu {
+    /**
+     把solid 1px 改成了 0px， 有1px白线 很难看
+    */
+    border-right: solid 0px var(--el-menu-border-color);
+}

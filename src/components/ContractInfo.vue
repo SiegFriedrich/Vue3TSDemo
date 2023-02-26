@@ -2,7 +2,7 @@ import type { DefineComponent from 'vue';
 <template>
     <div class="f-flex">
         <div class="img-box" v-if="icon">
-            <img class="img-width" src="@/assets/sea-wave.jpeg" alt="/" />
+            <img class="img-width" src="@/assets/sea-wave.jpg" alt="/" />
         </div>
         <div class="f-flex">
             <Record v-if="policyNo" label="证券番号" :value="contractInfo?.policyNo" class="mt-6px" />
@@ -10,7 +10,7 @@ import type { DefineComponent from 'vue';
             <Record v-if="salesAgencyCode" label="营业代码" :value="salesAgencyCodeValue" class="mt-6px" />
         </div>
     <!-- <CompanyLabel v-if="companyInfo" :companyName="contractInfo?.policyHolderName"
-                            :divisionName="contractInfo?.divisionName" /> -->
+                                :divisionName="contractInfo?.divisionName" /> -->
     </div>
 </template>
 

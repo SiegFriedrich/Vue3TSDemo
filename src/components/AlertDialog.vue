@@ -1,21 +1,15 @@
 <template>
-    <div>
-        <el-button text @click="isAlertDialog = true">
-            Click to open the Dialog
-        </el-button>
-
-        <el-dialog v-model="isAlertDialog" :title="header" width="30%" align-center>
-            <span>{{ message }}</span>
-            <template #footer>
-                <span class="dialog-footer">
-                    <el-button @click="isAlertDialog = false">Cancel</el-button>
-                    <el-button type="primary" @click="isAlertDialog = false">
-                        Confirm
-                    </el-button>
-                </span>
-            </template>
-        </el-dialog>
-    </div>
+    <el-dialog v-model="isAlertDialog" :title="header" width="30%" align-center>
+        <span>{{ message }}</span>
+        <template #footer>
+            <span class="dialog-footer">
+                <el-button @click="isAlertDialog = false">Cancel</el-button>
+                <el-button type="primary" @click="isAlertDialog = false">
+                    Confirm
+                </el-button>
+            </span>
+        </template>
+    </el-dialog>
 </template>
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';

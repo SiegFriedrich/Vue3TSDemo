@@ -50,6 +50,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 > Error code 400 indicates a client-side error, error code 401 indicates an authentication error, error code 500 indicates a server-side error, and error code 503 indicates a temporary server overload or maintenance.
 
+# CSS
+
+- By using vm can scale the font-size accoding to the browser window!
+
 # PAY MORE ATTENTION
 
 - In real produce environment we need to run lint and write jest to retrieve the coverage
