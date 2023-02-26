@@ -14,6 +14,21 @@
 import * as underscore from 'underscore.string'
 
 class StringUtil {
+    public readonly filedNameMap:any = {
+        処理区分 : 'add',
+        登録 : 'add',
+        更新 : 'update',
+        削除 : 'delete',
+
+        ユーザID : 'userID',
+        メールアドレス : 'email',
+        ロール : 'role',
+
+        部店コード : 'departmentCode',
+        営業店コード : 'selescode',
+        証券番号 : 'poliyCode',
+        ファンドID : 'fundId',
+    };
     /**
      * The || operator in the expression underscore.isBlank(content || '') is used to provide a default value of 
      * an empty string '' when content is falsy.

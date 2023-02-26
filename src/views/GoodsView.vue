@@ -52,7 +52,7 @@ const onGetAllGoods = async () => {
       request?: any;
     }
    */
-  const resp = await axiosUtil.get<any>('/goods/all');
+  const resp = await axiosUtil.get<any>('/goods/alls');
   initDataList = resp.data;
   selectDataRef.list = resp.data.value;
   console.log(selectDataRef);

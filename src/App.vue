@@ -1,6 +1,23 @@
+import { ref } from 'vue';
 <template>
-  <router-view />
+  <div v-loading.fullscreen.lock="loading">
+    <router-view />
+  </div>
+  <AlertDialog :header="alertHeader" :message="alertMessage" />
 </template>
+
+<script setup lang="ts">
+import { computed, ref } from 'vue';
+import { useGlobalStore } from './store/global.store';
+import { storeToRefs } from 'pinia';
+import AlertDialog from '@/components/AlertDialog.vue'
+const store = useGlobalStore();
+const { loading, alertHeader, alertMessage } = storeToRefs(store);
+
+computed(() => {
+  store.loading;
+});
+</script>
 
 <style lang="scss">
 * {

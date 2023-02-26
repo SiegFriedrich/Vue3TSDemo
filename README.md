@@ -1,6 +1,6 @@
 # vue3-ts-demo
 
-# USING POSTMAN TO IMITATE/MOCK A VIRTUAL SERVER
+#
 
 ### Compiles and minifies for production
 
@@ -18,15 +18,19 @@ npm run lint
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-### ABOUT VSCODE FORMAT
+# About VSCode
+
+### Format
 
 > shift + cmd + p
 > select Format Document --> to choose which formatter to be your default formatter
 
-### ABOUT NPM DEPENDENCIES
-- pinia-plugin-persistedstate
-Configurable persistence and rehydration of Pinia stores.
+# ABOUT NPM DEPENDENCIES
 
+- _pinia-plugin-persistedstate_
+  Configurable persistence and rehydration of Pinia stores.
+
+- _underscore_ is not a package in npm, but it is a popular JavaScript library that provides a collection of utility functions for common programming tasks.
 
 # Q&A
 
@@ -38,12 +42,20 @@ Configurable persistence and rehydration of Pinia stores.
 
 > sudo npm install -g typescript@latest
 
-### In real produce environment we need to run lint
+#### Failed to resolve component: Record ?
 
-### and write jest to retrieve the coverage
+> This error message means we lose to import the relative components when we use
 
-### In Api.ts file cannot export more than 1 default function
+#### What's ERROR STATUS 400 401 403 503 ?
 
-### Failed to resolve component: Record
+> Error code 400 indicates a client-side error, error code 401 indicates an authentication error, error code 500 indicates a server-side error, and error code 503 indicates a temporary server overload or maintenance.
 
-This error message means we lose to import the relative components when we use
+# PAY MORE ATTENTION
+
+- In real produce environment we need to run lint and write jest to retrieve the coverage
+
+- In Api.ts file cannot export more than 1 default function
+
+# SOMETHING NEED TO KNOW
+
+- USING POSTMAN TO IMITATE/MOCK A VIRTUAL SERVER
