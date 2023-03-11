@@ -55,6 +55,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .header {
+  position: inherit;
   height: 80px;
   background-color: burlywood;
   color: white;
@@ -87,7 +88,7 @@ export default defineComponent({
     background-color: #545c64;
     color: white;
     /** 100vh means the height of screen */
-    height: calc(100vh - 80px);
+    height: 100vh;
   }
 }
 </style>

@@ -54,6 +54,16 @@ const routes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: "about" */ "../views/D3jsView.vue"),
       },
+      {
+        path: "/D3Grid",
+        name: "D3Grid",
+        meta: {
+          isShow: true,
+          title: "D3Grid",
+        },
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/D3jsGridView.vue"),
+      },
     ],
   },
   {
