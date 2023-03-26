@@ -1,13 +1,13 @@
 export interface UserListInf {
-  userId: number;
+  userId: string;
   username: string;
   email: string;
   roles: RoleInf[];
 }
 
 interface RoleInf {
-  id: number;
-  roleId: number;
+  id: string;
+  roleId: string;
   roleName: string;
 }
 
@@ -19,20 +19,15 @@ interface SeletDataInf {
 }
 
 // initial data when page initializes
-export class InitUserList {
+//我要死啦 我要死啦
+//这里 这里 这里， 数组在定义的时候不要定义具体数值
+//直接[]就好啦 搞了我几个小时
+//虽然我不理解这是为什么
+export class initUserList {
   selectData: SeletDataInf = {
     username: "",
     email: "",
     role: "",
   };
-  userDataList: UserListInf[] = [{
-    userId: 1234,
-    username: 'string',
-    email: 'string',
-    roles: [{
-      id: 1234567,
-      roleId: 2,
-      roleName: 'Admin',
-    }],
-  }];
+  userDataList: UserListInf[] = [];
 }
