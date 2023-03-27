@@ -60,7 +60,7 @@ const onGetAllGoods = async () => {
     }
    */
   const resp = await axiosUtil.get<any>('/goods/all');
-  initDataList = resp.data;
+  initDataList = resp.data.value;
   selectDataRef.list = resp.data.value;
 
   console.log(selectDataRef);
@@ -93,7 +93,7 @@ const onSubmit = () => {
   resultData = [];
   selectDataRef.list = initDataList;
   console.log(selectDataRef.list)
-  if (selectDataRef.selectData.title || selectDataRef.selectData.company) {
+  if (selectDataRef.selectData.title || selectDataRef.selectData.company || selectDataRef.selectData.introduction) {
     if (selectDataRef.selectData.title) {
       resultData = selectDataRef.list.filter((el) => {
         return (el.title.indexOf(selectDataRef.selectData.title) !== -1)
@@ -107,6 +107,14 @@ const onSubmit = () => {
       resultData = resultData.filter((el) => {
         console.log(selectDataRef.selectData.company);
         return (el.company.indexOf(selectDataRef.selectData.company) !== -1);
+      });
+      console.log(resultData);
+    }
+
+    if (selectDataRef.selectData.introduction) {
+      resultData = resultData.filter((el) => {
+        console.log(selectDataRef.selectData.introduction);
+        return (el.info.indexOf(selectDataRef.selectData.introduction) !== -1);
       });
       console.log(resultData);
     }
