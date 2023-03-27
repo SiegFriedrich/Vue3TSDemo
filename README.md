@@ -46,6 +46,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 > This error message means we lose to import the relative components when we use
 
+#### 为什么会出现子组件内容先加载，值为 class 的 init 数据？
+
+> 因为在数据类型定义时，class 类型里面数组的值被具体定义了，而不是被定义成 []这样。所以数据会被初始化 吧。
+> 需要学习 interface class 和 type 的区别。
+
 #### What's ERROR STATUS 400 401 403 503 ?
 
 > Error code 400 indicates a client-side error, error code 401 indicates an authentication error, error code 500 indicates a server-side error, and error code 503 indicates a temporary server overload or maintenance.

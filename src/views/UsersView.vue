@@ -4,12 +4,10 @@
       <el-form-item label="Username">
         <el-input v-model="selectDataRef.selectData.username" placeholder="example: wine" />
       </el-form-item>
-      <el-form-item label="Email">
-        <el-input v-model="selectDataRef.selectData.email" placeholder="example: apple" />
-      </el-form-item>
+
       <el-form-item label="Authoriy">
-        <el-select v-model="selectDataRef.selectData.role" placeholder="example: sony">
-          <el-option label="---" value="" />
+        <el-select v-model="selectDataRef.selectData.roleId" placeholder="example: sony">
+          <el-option label="全部" value="" />
           <el-option label="Admin" value="1" />
           <el-option label="semiAdmin" value="2" />
           <el-option label="Manager" value="3" />
@@ -41,6 +39,7 @@ import { useContractStore } from '@/store/contract.store';
 import { axiosUtil } from '@/util/axios.util';
 const store = useContractStore();
 
+let resultData: UserListInf[] = [];
 const selectDataRef = reactive(new initUserList());
 const dataList = reactive(selectDataRef.userDataList);
 const getUserAllList = async () => {
@@ -55,8 +54,37 @@ onMounted(async () => {
 
 
 
-const onSubmit = () => { console.log(1) };
-const onDiscard = () => { console.log(1) };
+
+const onSubmit = () => {
+  console.log(1)
+  resultData = [];
+  // selectDataRef.userDataList = resultData;
+
+  if (selectDataRef.selectData.username || selectDataRef.selectData.roleId) {
+    if (selectDataRef.selectData.username) {
+      console.log(2);
+      resultData = selectDataRef.userDataList.filter((el) => {
+        return (el.username.indexOf(selectDataRef.selectData.username) !== -1)
+      });
+      console.log(`resultData---${resultData}`);
+
+
+      if (selectDataRef.selectData.roleId) {
+        return resultData.filter((value) => { value.roles.find((el) => el.roleId === selectDataRef.selectData.roleId) });
+      }
+    }
+    // resultData.length == 0 ? resultData = selectDataRef.userDataList : resultData;
+
+  } else {
+    resultData = selectDataRef.userDataList;
+  }
+  selectDataRef.userDataList = resultData;
+};
+const onDiscard = () => {
+  selectDataRef.selectData.username = '';
+  selectDataRef.selectData.roleId = 0;
+  getUserAllList();
+}
 </script>
 
 <style lang="scss" scoped>

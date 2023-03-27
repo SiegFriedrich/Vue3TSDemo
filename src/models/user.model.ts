@@ -7,7 +7,7 @@ export interface UserListInf {
 
 interface RoleInf {
   id: string;
-  roleId: string;
+  roleId: number;
   roleName: string;
 }
 
@@ -15,7 +15,7 @@ interface RoleInf {
 interface SeletDataInf {
   username: string;
   email: string;
-  role: string;
+  roleId: number;
 }
 
 // initial data when page initializes
@@ -27,7 +27,7 @@ export class initUserList {
   selectData: SeletDataInf = {
     username: "",
     email: "",
-    role: "",
+    roleId: 0,
   };
   userDataList: UserListInf[] = [];
 }

@@ -25,6 +25,16 @@ const routes: Array<RouteRecordRaw> = [
           import(/* webpackChunkName: "about" */ "../views/IndexView.vue"),
       },
       {
+        path: "/skills",
+        name: "skills",
+        meta: {
+          isShow: true,
+          title: "skills",
+        },
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/SkillsView.vue"),
+      },
+      {
         path: "/goods",
         name: "goods",
         meta: {
