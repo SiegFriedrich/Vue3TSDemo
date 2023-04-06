@@ -18,6 +18,12 @@ npm run lint
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+### About Git
+
+- To delete remote branches
+  > $ git push <remote_name> --delete <branch_name>
+  > zB. % git push origin --delete dev_user_roles
+
 # About VSCode
 
 ### Format
