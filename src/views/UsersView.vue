@@ -7,12 +7,9 @@
 
       <el-form-item label="Authoriy">
         <el-select v-model="selectDataRef.selectData.roleId" placeholder="example: sony">
-          <el-option label="全部" value="" />
-          <el-option label="Admin" value="1" />
-          <el-option label="semiAdmin" value="2" />
-          <el-option label="Manager" value="3" />
-          <el-option label="Salesman" value="4" />
-          <el-option label="Customer" value="5" />
+          <el-option label="全部" :value="0" />
+          <el-option v-for="item in roleList" :label="item.rolename" :value="item.id" :key="item.id" />
+
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -22,7 +19,19 @@
     </el-form>
 
     <div v-if="selectDataRef.userDataList.length > 0">
-      <UserTableComponent :data="selectDataRef"></UserTableComponent>
+      <div>
+        <el-table :data="selectDataRef.userDataList" stripe style="width: 100%">
+          <el-table-column prop="id" label="ID" width="100" />
+          <el-table-column prop="username" label="姓名" width="180" />
+          <el-table-column prop="nickname" label="NICKNAME" width="180" />
+          <el-table-column label="权限">
+            <template #default="scope">
+              <el-button v-for="item in scope.row.roles" :index="item.id" type="danger" size="small">{{ item.rolename
+              }}</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
     </div>
     <div v-else>
       <EmptyTable :message="'Product'" />
@@ -31,17 +40,22 @@
 </template>
 
 <script lang="ts" setup>
-import { initUserList, UserListInf } from '@/models/user.model';
-import UserTableComponent from "@/components/UserTableComponent.vue";
+import { initUserList, UserListInf, RoleInf } from '@/models/user.model';
 import EmptyTable from "@/components/EmptyTable.vue";
 import { onMounted, reactive, ref } from 'vue';
-import { useContractStore } from '@/store/contract.store';
+// import { useContractStore } from '@/store/contract.store';
 import { axiosUtil } from '@/util/axios.util';
-const store = useContractStore();
 
-let resultData: UserListInf[] = [];
+// const store = useContractStore();
+
+let roleList: RoleInf[] = [];
+const getRoleList = async () => {
+  const resp = await axiosUtil.get<any>('/role/all');
+  console.log(`resp---${JSON.stringify(resp.data.value)}`);
+  roleList = resp.data.value;
+}
+
 const selectDataRef = reactive(new initUserList());
-const dataList = reactive(selectDataRef.userDataList);
 const getUserAllList = async () => {
   const resp = await axiosUtil.get<any>('/user/all');
   selectDataRef.userDataList = resp.data.value;
@@ -50,16 +64,14 @@ const getUserAllList = async () => {
 
 onMounted(async () => {
   await getUserAllList();
+  await getRoleList();
 });
 
-
-
-
 const onSubmit = () => {
-  console.log(1)
-  resultData = [];
-  // selectDataRef.userDataList = resultData;
+  console.log(`selectDataRef.selectData.roleId--111--${selectDataRef.selectData.roleId}`);
 
+  let resultData: UserListInf[] = [];
+  console.log(JSON.stringify(selectDataRef.selectData))
   if (selectDataRef.selectData.username || selectDataRef.selectData.roleId) {
     if (selectDataRef.selectData.username) {
       console.log(2);
@@ -67,24 +79,33 @@ const onSubmit = () => {
         return (el.username.indexOf(selectDataRef.selectData.username) !== -1)
       });
       console.log(`resultData---${resultData}`);
-
-
-      if (selectDataRef.selectData.roleId) {
-        return resultData.filter((value) => { value.roles.find((el) => el.roleId === selectDataRef.selectData.roleId) });
-      }
     }
-    // resultData.length == 0 ? resultData = selectDataRef.userDataList : resultData;
+
+    if (selectDataRef.selectData.roleId != 1) {
+      console.log(`selectDataRef.selectData.roleId--2222--${selectDataRef.selectData.roleId}`);
+
+      resultData = (selectDataRef.selectData.username ? resultData : selectDataRef.userDataList).filter((value) => {
+
+        console.log(`value.roles----${JSON.stringify(value.roles)}`);
+        return value.roles.find((el) => el.id === selectDataRef.selectData.roleId)
+      });
+
+      console.log(`resultData---${resultData}`);
+    }
 
   } else {
     resultData = selectDataRef.userDataList;
   }
   selectDataRef.userDataList = resultData;
+  console.log(`selectDataRef.userDataList-------${JSON.stringify(selectDataRef.userDataList)}`);
 };
 const onDiscard = () => {
   selectDataRef.selectData.username = '';
   selectDataRef.selectData.roleId = 0;
   getUserAllList();
 }
+
+
 </script>
 
 <style lang="scss" scoped>

@@ -5,10 +5,9 @@ export interface UserListInf {
   roles: RoleInf[];
 }
 
-interface RoleInf {
-  id: string;
-  roleId: number;
-  roleName: string;
+export interface RoleInf {
+  id: number;
+  rolename: string;
 }
 
 // include the query bar infomation definition
@@ -30,4 +29,19 @@ export class initUserList {
     roleId: 0,
   };
   userDataList: UserListInf[] = [];
+  roleDataList: RoleInf[] = [];
+}
+
+export type userType = { 
+  userId: number;
+  username: string;
+  email: string;
+  roles: RoleInf[];
+}
+
+export class initUserType { 
+  userId = 0;
+  username= '';
+  email='';
+  roles:RoleInf[] = [];
 }

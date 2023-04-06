@@ -34,12 +34,10 @@
 
 <script lang="ts" setup>
 import { onMounted, reactive, ref, watch } from 'vue'
-import { getAllGoods } from '../request/api';
 import TableComponent from '@/components/TableComponent.vue'
 import EmptyTable from '@/components/EmptyTable.vue';
 import { initData, GoodsList, ContractInfoResp } from '../models';
 import InfoReference from '@/components/InfoReference.vue';
-import axios from 'axios';
 import { axiosUtil } from '../util/axios.util';
 import { stringUtil } from '../util/string.util';
 
