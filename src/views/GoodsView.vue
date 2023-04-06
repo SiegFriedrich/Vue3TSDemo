@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive, ref, watch } from 'vue'
+import { onMounted, reactive, watch } from 'vue'
 import TableComponent from '@/components/TableComponent.vue'
 import EmptyTable from '@/components/EmptyTable.vue';
 import { initData, GoodsList, ContractInfoResp } from '../models';

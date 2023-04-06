@@ -5,6 +5,13 @@ export interface UserListInf {
   roles: RoleInf[];
 }
 
+
+export interface ActiveUser {
+  userId: string;
+  username: string;
+  email: string;
+  roles: number[];
+}
 export interface RoleInf {
   id: number;
   rolename: string;

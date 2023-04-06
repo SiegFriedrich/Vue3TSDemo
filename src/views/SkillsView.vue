@@ -35,7 +35,7 @@
 
 const listAWS = ['AWS Developer', 'AWS Architect', 'Networking From Top to Bottom'];
 const listReactVue = ['Axios', 'Pinia', 'react', 'Next.js', 'Nuxt.js', 'MyBlog Demo', 'Formal Demo Financial ESG Project',]
-const listFlutter = ['Vue', 'React', 'React Native', 'Flutter', 'Fitness Management App Flutter'];
+const listFlutter = ['Vue', 'React', 'React Native', 'Flutter', 'Fitness Management App Flutter', 'firebase'];
 const listPython = ['Python', 'AI Machine Learning', 'Deep Learning', 'Flask', 'Django', 'Django Rest Framework',];
 const listJava = ['Spring', 'Spring Boot', 'Spring Boot3']
 const listUIUX = ['Figma', 'SCSS'];
