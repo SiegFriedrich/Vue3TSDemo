@@ -54,16 +54,16 @@ const routes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: "about" */ "../views/UsersView.vue"),
       },
-      {
-        path: "/D3",
-        name: "D3",
-        meta: {
-          isShow: true,
-          title: "D3",
-        },
-        component: () =>
-          import(/* webpackChunkName: "about" */ "../views/D3jsView.vue"),
-      },
+      // {
+      //   path: "/D3",
+      //   name: "D3",
+      //   meta: {
+      //     isShow: true,
+      //     title: "D3",
+      //   },
+      //   component: () =>
+      //     import(/* webpackChunkName: "about" */ "../views/D3jsView.vue"),
+      // },
       {
         path: "/D3Grid",
         name: "D3Grid",
