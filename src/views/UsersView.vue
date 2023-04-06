@@ -81,7 +81,7 @@ const onSubmit = () => {
       console.log(`resultData---${resultData}`);
     }
 
-    if (selectDataRef.selectData.roleId != 1) {
+    if (selectDataRef.selectData.roleId) {
       console.log(`selectDataRef.selectData.roleId--2222--${selectDataRef.selectData.roleId}`);
 
       resultData = (selectDataRef.selectData.username ? resultData : selectDataRef.userDataList).filter((value) => {
